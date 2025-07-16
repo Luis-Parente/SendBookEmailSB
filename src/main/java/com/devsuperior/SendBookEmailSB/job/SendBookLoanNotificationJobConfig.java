@@ -16,9 +16,11 @@ public class SendBookLoanNotificationJobConfig {
 	private static Logger logger = LoggerFactory.getLogger(SendBookLoanNotificationJobConfig.class);
 
     @Bean
-    Job sendBookLoanNotificationJob(JobRepository jobRepository, Step sendEmailUserStep) {
+    public Job sendBookLoanNotificationJob(Step sendEmailUserStep, JobRepository jobRepository) {
 		logger.info("Start job execution....");
-		return new JobBuilder("sendBookLoanNotificationJob", jobRepository).start(sendEmailUserStep)
-				.incrementer(new RunIdIncrementer()).build();
+		return new JobBuilder("sendBookLoanNotificationJob", jobRepository)
+				.start(sendEmailUserStep)
+				.incrementer(new RunIdIncrementer())
+				.build();
 	}
 }
