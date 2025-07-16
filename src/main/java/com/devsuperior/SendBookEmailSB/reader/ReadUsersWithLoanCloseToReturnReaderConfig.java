@@ -15,11 +15,12 @@ import org.springframework.jdbc.core.RowMapper;
 import com.devsuperior.SendBookEmailSB.domain.Book;
 import com.devsuperior.SendBookEmailSB.domain.User;
 import com.devsuperior.SendBookEmailSB.domain.UserBookLoan;
+import com.devsuperior.SendBookEmailSB.util.GenerateBookReturnDate;
 
 @Configuration
 public class ReadUsersWithLoanCloseToReturnReaderConfig {
 
-	private int numDaysToNotifyReturn = 6;
+	private int numDaysToNotifyReturn = GenerateBookReturnDate.numDaysToReturnBook - 1;
 	
 	@Bean
 	public ItemReader<UserBookLoan> readUsersWithLoanCloseToReturnReader(@Qualifier("appDS") DataSource dataSource) {
